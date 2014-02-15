@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_splash">#23a96e</color>
+    <color name="bg_main">#353535</color>
+    <color name="login_panel">#cecece</color>
+</resources>
