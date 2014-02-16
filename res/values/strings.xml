@@ -6,5 +6,57 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_welcome">Welcome</string>
     <string name="title_activity_home">Home</string>
+    <string name="title_activity_maps">Maps</string>
+    <string name="desc_help">
+		<![CDATA[
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			halo halo halo <br>
+			halo halo halo <br>
+			halo halo halo <br>
+			halo halo halo <br>
+			halo halo halo <br>
+			halo halo halo <br>
+			halo halo halo <br>
+			halo halo halo <br>
+			halo halo halo <br>
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+			Aplikasi dikembangkan oleh .... <br>
+			PHP INDONESIA
+		]]>
+	</string>
 
 </resources>

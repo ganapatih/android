@@ -90,6 +90,7 @@
                     android:onClick="goLogin"
                     />
             </LinearLayout>
+
         </RelativeLayout>
     </ScrollView>
 

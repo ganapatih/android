@@ -1,10 +1,13 @@
 package php.id.ganapatih;
 
+import helper.RegisterAsync;
 import helper.peopleData;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import org.json.JSONException;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -20,16 +23,24 @@ import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class Welcome extends Activity {
 
 	peopleData p;
+	String userName,userPhone,userEmail;
+	
+	private Context c;
+	private Activity act;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
+		
+		act = getParent();
+		c = this;
 
 		p = new peopleData(getApplicationContext());
 
@@ -45,18 +56,31 @@ public class Welcome extends Activity {
 	}
 
 	public void goLogin(View v) {
-		String userName = ((EditText) findViewById(R.id.editText1)).getText().toString(); 
-		String userPhone = ((EditText) findViewById(R.id.editText2)).getText().toString(); 
-		String userEmail = ((EditText) findViewById(R.id.editText3)).getText().toString();
+		userName = ((EditText) findViewById(R.id.editText1)).getText().toString(); 
+		userPhone = ((EditText) findViewById(R.id.editText2)).getText().toString(); 
+		userEmail = ((EditText) findViewById(R.id.editText3)).getText().toString();
 		
-		p.setName(userName);
-		p.setPhone(userPhone);
-		p.setEmail(userEmail);
+		// set id to save in server		
+		String GcmId = "NULL";
 		
-		Intent intent = new Intent(this, Home.class);
-		intent = new Intent(this, Home.class);
-		startActivity(intent);
-		finish();
+		RegisterAsync R = new RegisterAsync(c, act) {
+			@Override
+			public void onResponseReceived(String result) {
+
+				Toast.makeText(getApplicationContext(), result,
+						Toast.LENGTH_SHORT).show();
+
+				p.setName(userName);
+				p.setPhone(userPhone);
+				p.setEmail(userEmail);
+
+				Intent intent = new Intent(Welcome.this, Home.class);
+				startActivity(intent);
+				finish();
+				
+			}
+		};
+		R.execute(userName,userPhone,userEmail,GcmId);	
 	}
 
 	public void initData() {
@@ -112,25 +136,5 @@ public class Welcome extends Activity {
 				return null;
 		} else
 			return null;
-	}
-
-	private double[] getGPS() {
-		LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		List<String> providers = lm.getProviders(true);
-
-		Location l = null;
-
-		for (int i = providers.size() - 1; i >= 0; i--) {
-			l = lm.getLastKnownLocation(providers.get(i));
-			if (l != null)
-				break;
-		}
-
-		double[] gps = new double[2];
-		if (l != null) {
-			gps[0] = l.getLatitude();
-			gps[1] = l.getLongitude();
-		}
-		return gps;
 	}
 }

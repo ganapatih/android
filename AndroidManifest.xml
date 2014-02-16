@@ -8,10 +8,22 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
+    <permission
+        android:name="php.id.ganapatih.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="php.id.ganapatih.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
         android:allowBackup="true"
@@ -35,6 +47,15 @@
         <activity
             android:name="php.id.ganapatih.Home"
             android:label="@string/title_activity_home" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyAhaK65JYB4cHDrzSKTcNMvb2vOiy9riOo" />
+
+        <activity
+            android:name="php.id.ganapatih.Maps"
+            android:label="@string/title_activity_maps" >
         </activity>
     </application>
 
