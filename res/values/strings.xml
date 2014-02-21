@@ -58,5 +58,6 @@
 			PHP INDONESIA
 		]]>
 	</string>
+	<string name="warning_noconnection">Aplikasi tidak bisa dilanjutkan, koneksi tidak tersedia !</string>	
 
 </resources>
