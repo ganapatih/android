@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -44,6 +45,10 @@ public abstract class KorbanAsync extends AsyncTask<String, Void, String> implem
 
 	protected String doInBackground(String... params) {
 		
+		TokenAsync t = new TokenAsync(mainContext, CallerActivity);
+		String token = t.getToken();
+		Log.d("token", token);
+		
 		String url = CommonUtilities.SERVER_URL_KORBAN;
 		String sReturn = "";
 		HttpClient client = new DefaultHttpClient();
@@ -52,8 +57,9 @@ public abstract class KorbanAsync extends AsyncTask<String, Void, String> implem
 
 		pairs.add(new BasicNameValuePair("name", params[0]));
 		pairs.add(new BasicNameValuePair("phone", params[1]));
-		pairs.add(new BasicNameValuePair("desc", params[2]));
+		pairs.add(new BasicNameValuePair("type_victim", params[2]));
 		pairs.add(new BasicNameValuePair("location", params[3]));
+		pairs.add(new BasicNameValuePair("_token", token));
 
 		try {
 			request.setEntity(new UrlEncodedFormEntity(pairs));

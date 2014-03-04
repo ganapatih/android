@@ -64,11 +64,12 @@ public class Welcome extends Activity {
 		setContentView(R.layout.activity_welcome);
 		
 		getConnection();
-		initGCM();
 		
 		act = getParent();
 		c = this;
 		context = getApplicationContext();
+		
+		initGCM();
 
 		p = new peopleData(getApplicationContext());
 		initData();
@@ -87,27 +88,25 @@ public class Welcome extends Activity {
 		userPhone = ((EditText) findViewById(R.id.editText2)).getText().toString(); 
 		userEmail = ((EditText) findViewById(R.id.editText3)).getText().toString();
 		
-		// set id to save in server		
-		String GcmId = regid;
-		
 		RegisterAsync R = new RegisterAsync(c, act) {
 			@Override
 			public void onResponseReceived(String result) {
 
-				Toast.makeText(getApplicationContext(), result,
-						Toast.LENGTH_SHORT).show();
+				boolean success = Boolean.parseBoolean(result);
+				if(success){
+					p.setName(userName);
+					p.setPhone(userPhone);
+					p.setEmail(userEmail);
+					p.setRegId(regid);
 
-				p.setName(userName);
-				p.setPhone(userPhone);
-				p.setEmail(userEmail);
-
-				Intent intent = new Intent(Welcome.this, Home.class);
-				startActivity(intent);
-				finish();
-				
+					Intent intent = new Intent(Welcome.this, Home.class);
+					startActivity(intent);
+					finish();
+				}else
+					Toast.makeText(getApplicationContext(), "Registration Failed, please try again", Toast.LENGTH_SHORT).show();
 			}
 		};
-		R.execute(userName,userPhone,userEmail,GcmId);	
+		R.execute(userName,userPhone,userEmail,regid);	
 	}
 
 	public void initData() {
@@ -288,4 +287,5 @@ public class Welcome extends Activity {
 	    editor.putInt(PROPERTY_APP_VERSION, appVersion);
 	    editor.commit();
 	}
+	
 }

@@ -14,11 +14,14 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -44,6 +47,10 @@ public abstract class RegisterAsync extends AsyncTask<String, Void, String> impl
 
 	protected String doInBackground(String... params) {
 		
+		TokenAsync t = new TokenAsync(mainContext, CallerActivity);
+		String token = t.getToken();
+		Log.d("token", token);
+		
 		String url = CommonUtilities.SERVER_URL_DAFTAR;
 		String sReturn = "";
 		HttpClient client = new DefaultHttpClient();
@@ -54,6 +61,9 @@ public abstract class RegisterAsync extends AsyncTask<String, Void, String> impl
 		pairs.add(new BasicNameValuePair("phone", params[1]));
 		pairs.add(new BasicNameValuePair("email", params[2]));
 		pairs.add(new BasicNameValuePair("gcmId", params[3]));
+		pairs.add(new BasicNameValuePair("_token", token));
+		
+		Log.d("pairs", pairs.toString());
 
 		try {
 			request.setEntity(new UrlEncodedFormEntity(pairs));
@@ -79,8 +89,21 @@ public abstract class RegisterAsync extends AsyncTask<String, Void, String> impl
 			// writing exception to log
 			e.printStackTrace();
 		}
+		Log.d("Callback server", sReturn);
+		String callback = "false";
+		if(sReturn != ""){
+			try {
+				JSONObject jsonObj = new JSONObject(sReturn);
+				if(jsonObj.getString("success").equals("1"))
+					callback = "true";
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
-		return sReturn;
+		return callback;
 
 	}
 

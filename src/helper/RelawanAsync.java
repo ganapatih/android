@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -43,6 +44,12 @@ public abstract class RelawanAsync extends AsyncTask<String, Void, String> imple
 	public abstract void onResponseReceived(String sReturn);
 
 	protected String doInBackground(String... params) {
+		
+		//api relawan belum sesuai		
+		
+		TokenAsync t = new TokenAsync(mainContext, CallerActivity);
+		String token = t.getToken();
+		Log.d("token", token);
 		
 		String url = CommonUtilities.SERVER_URL_RELAWAN;
 		String sReturn = "";
