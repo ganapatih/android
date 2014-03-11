@@ -98,6 +98,7 @@ public class Welcome extends Activity {
 					p.setPhone(userPhone);
 					p.setEmail(userEmail);
 					p.setRegId(regid);
+					p.setIsRegister("true");
 
 					Intent intent = new Intent(Welcome.this, Home.class);
 					startActivity(intent);

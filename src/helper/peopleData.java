@@ -2,6 +2,7 @@ package helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 public class peopleData {
 	
@@ -34,6 +35,10 @@ public class peopleData {
 	}
 	
 	public Boolean isLogin(){
+		Log.d("nama", name);
+		Log.d("phone", phone);
+		Log.d("email", email);
+		Log.d("isregister", isRegister);
 		if ((name.equals("") && phone.equals("") && email.equals("")) || isRegister.equals(""))
 			return false;
 		else return true;

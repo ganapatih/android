@@ -14,6 +14,8 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -61,7 +63,7 @@ public abstract class RelawanAsync extends AsyncTask<String, Void, String> imple
 		pairs.add(new BasicNameValuePair("phone", params[1]));
 		pairs.add(new BasicNameValuePair("desc", params[2]));
 		pairs.add(new BasicNameValuePair("location", params[3]));
-		pairs.add(new BasicNameValuePair("keadaan", params[4]));
+		pairs.add(new BasicNameValuePair("status", params[4]));
 
 		try {
 			request.setEntity(new UrlEncodedFormEntity(pairs));
@@ -88,8 +90,21 @@ public abstract class RelawanAsync extends AsyncTask<String, Void, String> imple
 			e.printStackTrace();
 		}
 
-		return sReturn;
-
+		Log.d("Callback server", sReturn);
+		String callback = "false";
+		if(sReturn != ""){
+			try {
+				JSONObject jsonObj = new JSONObject(sReturn);
+				if(jsonObj.getString("success").equals("1"))
+					callback = "true";
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+			
+		return callback;
 	}
 
 	protected void onCancelled() {

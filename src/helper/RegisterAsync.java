@@ -22,14 +22,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
 
 public abstract class RegisterAsync extends AsyncTask<String, Void, String> implements ClientInterface{
 
+	public static final int HTTP_TIMEOUT = 30 * 1000;
 	private Context mainContext;
 	private Activity CallerActivity;
 	private ProgressDialog pd;
+	private static HttpClient client;
+	
+	private ArrayList<NameValuePair> DataValuePair = new ArrayList<NameValuePair>();
 	
 	public RegisterAsync(Context c, Activity a) {
 		mainContext = c;
@@ -61,7 +63,7 @@ public abstract class RegisterAsync extends AsyncTask<String, Void, String> impl
 		pairs.add(new BasicNameValuePair("phone", params[1]));
 		pairs.add(new BasicNameValuePair("email", params[2]));
 		pairs.add(new BasicNameValuePair("gcmId", params[3]));
-		pairs.add(new BasicNameValuePair("_token", token));
+		pairs.add(new BasicNameValuePair("_token", token.trim()));
 		
 		Log.d("pairs", pairs.toString());
 
@@ -102,8 +104,8 @@ public abstract class RegisterAsync extends AsyncTask<String, Void, String> impl
 				e.printStackTrace();
 			}
 		}
-
-		return callback;
+			
+			return callback;
 
 	}
 

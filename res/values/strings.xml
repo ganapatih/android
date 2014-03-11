@@ -9,55 +9,16 @@
     <string name="title_activity_maps">Maps</string>
     <string name="desc_help">
 		<![CDATA[
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			halo halo halo <br>
-			halo halo halo <br>
-			halo halo halo <br>
-			halo halo halo <br>
-			halo halo halo <br>
-			halo halo halo <br>
-			halo halo halo <br>
-			halo halo halo <br>
-			halo halo halo <br>
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
-			Aplikasi dikembangkan oleh .... <br>
-			PHP INDONESIA
+			Aplikasi dikembangkan oleh<br>
+			PHP INDONESIA 2014
 		]]>
 	</string>
 	<string name="warning_noconnection">Aplikasi tidak bisa dilanjutkan, koneksi tidak tersedia !</string>	
+	<string name="submit_success">Terimakasih, data anda sudah terkirim</string>	
+	<string name="submit_failed">Maaf, ada kesalahan, silahkan ulangi lagi</string>	
+	
+	<string name="status_korban1">Luka Parah</string>	
+	<string name="status_korban2">Luka Sedang</string>	
+	<string name="status_korban3">Luka Biasa</string>	
 
 </resources>

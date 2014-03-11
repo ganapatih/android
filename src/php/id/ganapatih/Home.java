@@ -63,10 +63,10 @@ public class Home extends FragmentActivity {
 
 				final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinner1);
 				List<String> list = new ArrayList<String>();
-				list.add("Status Korban");
-				list.add("Parah");
-				list.add("Biasa");
-				list.add("Biasa");
+				list.add("Status Darurat");
+				list.add(getString(R.string.status_korban1));
+				list.add(getString(R.string.status_korban2));
+				list.add(getString(R.string.status_korban3));
 				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(
 						getApplicationContext(), R.layout.spinner_item, list);
 				dataAdapter.setDropDownViewResource(R.layout.spinner_item_view);
@@ -86,16 +86,20 @@ public class Home extends FragmentActivity {
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 
-						RelawanAsync R = new RelawanAsync(c, act) {
+						RelawanAsync R1 = new RelawanAsync(c, act) {
 							@Override
 							public void onResponseReceived(String result) {
-
-								Toast.makeText(getApplicationContext(), result,
-										Toast.LENGTH_SHORT).show();
- 
 								
-								p.setName(etUsername.getText().toString());
-								p.setPhone(etPhone.getText().toString());
+								boolean success = Boolean.parseBoolean(result);
+								if(success){
+									Toast.makeText(getApplicationContext(),
+											getString(R.string.submit_success), Toast.LENGTH_SHORT).show();
+
+									p.setName(etUsername.getText().toString());
+									p.setPhone(etPhone.getText().toString());
+								}else{
+									Toast.makeText(getApplicationContext(),getString(R.string.submit_success) , Toast.LENGTH_SHORT).show();
+								}
 
 								Intent intent = new Intent(Home.this,Home.class);
 								startActivity(intent);
@@ -103,7 +107,7 @@ public class Home extends FragmentActivity {
 
 							}
 						};
-						R.execute(etUsername.getText().toString(), 
+						R1.execute(etUsername.getText().toString(), 
 									etPhone.getText().toString(), 
 									etDesc.getText().toString(),
 									getGPS(),spinner.getSelectedItem().toString());
@@ -127,7 +131,6 @@ public class Home extends FragmentActivity {
 				
 				final EditText etUsername 	= ((EditText) dialog.findViewById(R.id.editText1));
 				final EditText etPhone 		= ((EditText) dialog.findViewById(R.id.editText2));
-				final EditText etDesc 		= ((EditText) dialog.findViewById(R.id.editText3));
 				
 				etUsername.setText(p.getName());
 				etPhone.setText(p.getPhone());
@@ -140,16 +143,20 @@ public class Home extends FragmentActivity {
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 
-						KorbanAsync R = new KorbanAsync(c, act) {
+						KorbanAsync R2 = new KorbanAsync(c, act) {
 							@Override
 							public void onResponseReceived(String result) {
-
-								Toast.makeText(getApplicationContext(), result,
-										Toast.LENGTH_SHORT).show();
- 
 								
-								p.setName(etUsername.getText().toString());
-								p.setPhone(etPhone.getText().toString());
+								boolean success = Boolean.parseBoolean(result);
+								if(success){
+									Toast.makeText(getApplicationContext(),
+											getString(R.string.submit_success), Toast.LENGTH_SHORT).show();
+
+									p.setName(etUsername.getText().toString());
+									p.setPhone(etPhone.getText().toString());
+								}else{
+									Toast.makeText(getApplicationContext(),getString(R.string.submit_success) , Toast.LENGTH_SHORT).show();
+								} 
 
 								Intent intent = new Intent(Home.this,Home.class);
 								startActivity(intent);
@@ -157,9 +164,8 @@ public class Home extends FragmentActivity {
 
 							}
 						};
-						R.execute(etUsername.getText().toString(), 
-									etPhone.getText().toString(), 
-									etDesc.getText().toString(),
+						R2.execute(etUsername.getText().toString(), 
+									etPhone.getText().toString(),
 									getGPS());
 
 					}
